@@ -93,24 +93,24 @@ def get_tax_rate(retire_spend):
     else:
         raise ValueError("retire_spend not within a valid range")
 
-
-while x < 51:
-    Total_spend = spend * (inflation ** x)
-    retire_spend = spend * (inflation ** x) * portion
-    tax = get_tax_rate(retire_spend)
-    list_tax.append(1 - tax)
-    Total_spend_list.append(Total_spend)
-    prin_balance = prin_balance * interest - spend * (inflation ** x) * (1 - portion)
-    retire_balance = retire_balance * interest - retire_spend / tax
-    totalP = prin_balance + retire_balance
-
-    retire_list.append(retire_balance)
-    totalP_list.append(totalP)
-
-    if retire_balance <= 0:
-        totalP -= (1 - list_tax[-1]) * retire_list[-1]
-        break
-    x += 1
+if retire_balance > 0 :
+    while x < 51:
+        Total_spend = spend * (inflation ** x)
+        retire_spend = spend * (inflation ** x) * portion
+        tax = get_tax_rate(retire_spend)
+        list_tax.append(1 - tax)
+        Total_spend_list.append(Total_spend)
+        prin_balance = prin_balance * interest - spend * (inflation ** x) * (1 - portion)
+        retire_balance = retire_balance * interest - retire_spend / tax
+        totalP = prin_balance + retire_balance
+    
+        retire_list.append(retire_balance)
+        totalP_list.append(totalP)
+    
+        if retire_balance <= 0:
+            totalP -= (1 - list_tax[-1]) * retire_list[-1]
+            break
+        x += 1
 
 # 【三、401k耗尽后，仅用本金模拟】
 while x < 51:
