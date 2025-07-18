@@ -55,15 +55,17 @@ prin = st.number_input("Total Other Assets at Retirement (excluding 401k)", valu
 spend = st.number_input("Estimated Annual Retirement Expenses", value=100000,
                         help="Adjust based on your lifestyle and region.")
 
-portion = st.slider("Proportion of Expenses Covered by 401k", 0.0, 1.0, 0.5,
-                    help="For example: 0.5 means 50% of annual spending comes from your 401k, the rest from other assets.")
 
 interest = st.number_input("Expected Annual Return Rate (After Tax) During Retirement", value=1.06,
                            help="Expected average investment return rate for both 401k and other assets after retirement. Enter 1.06 for 6%.")
 
 inflation = st.number_input("Expected Annual Inflation Rate", value=1.03,
                             help="Affects growth in annual expenses. Enter 1.03 for 3% inflation.")
-
+if retire > 0:
+    portion = st.slider("Proportion of Expenses Covered by 401k", 0.0, 1.0, 0.5,
+                    help="For example: 0.5 means 50% of annual spending comes from your 401k, the rest from other assets.")
+else:
+    portion = 0
 # 【二、退休模拟】
 x = 1
 totalP = 0
