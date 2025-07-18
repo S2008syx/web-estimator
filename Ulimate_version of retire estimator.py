@@ -112,7 +112,7 @@ while x < 51:
     totalP_list.append(totalP)
 
     if retire_balance <= 0:
-        totalP -= (1 - list_tax[-1]) * retire_list[-1]
+        totalP -= (1 - list_tax[-1]) * retire_list[-1]/list_tax[-1]
         break
 
     x += 1
